@@ -12,14 +12,18 @@ This project is licensed under the [Creative Commons Attribution-NonCommercial-N
 - **README.md**: Project overview and information.
 - **requirements.txt**: Dependencies and packages required for the project.
 
+## Research Paper
+This project is comprehensively documented in a detailed research paper. The paper delves into the methodology, findings, results, visualizations, and interpretations associated with the analysis of chest X-ray images for various purposes (classification and segmentation). You can find the paper on [Google Drive](https://drive.google.com/file/d/1YKOquZfB0PWgLXoil0_miafx5ck5v2lf/view?usp=sharing).
+
+
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Project Goals](#project-goals)
 - [Models Used](#models-used)
 - [Performance Evaluation](#performance-evaluation)
+- [Key Findings and Model Comparison](#key-findings-and-model-comparison)
 - [Datasets](#datasets)
-- [Reference Paper](#reference-paper)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
@@ -55,16 +59,21 @@ The project employed the following deep learning models:
 
 ## Performance Evaluation
 
-The models were evaluated on various metrics including accuracy, precision, recall, F1-score, and interpretability. A detailed analysis of the results, comparisons, and visualizations can be found in the accompanying research paper.
+The models were evaluated on various metrics including accuracy, precision, recall, F1-score, and interpretability. A detailed analysis of the results and visualizations can be found in the accompanying research paper. 
+
+**In general, classification models performed better on the full chest X-ray dataset compared to the segmented dataset.**
+
+## Key Findings and Model Comparison
+
+The research evaluated various performance metrics and interpretability factors. Additionally, the findings were compared with the standards established by the PHCC (Primary Health Care Corporation) of Qatar to determine the most suitable model for each dataset (full vs. segmented X-rays).
+
+The detailed analysis and comparison process are elaborated upon in the research paper.
 
 ## Datasets
 
 The project utilizes two external chest X-ray datasets. Due to size constraints, the datasets are not included in this repository. Information regarding the data sources, is provided in the research paper.
 
-## Reference Paper
-
-This project is a solo effort documented in a comprehensive research paper that details the methodology, findings, results, and visualizations. You can find the paper on [Google Drive](https://drive.google.com/file/d/1YKOquZfB0PWgLXoil0_miafx5ck5v2lf/view?usp=sharing).
-
 ## Acknowledgments
 
-I would like to express my sincere gratitude to my mentor, Ivan Felipe Rodriguez, for their invaluable guidance, support, and encouragement throughout this project.
+I would like to express my sincere gratitude to my mentor, Ivan Felipe Rodriguez, for their invaluable guidance, support, and encouragement
+throughout this project.
