@@ -11,8 +11,7 @@
 📄 **[Read the full 50-page research paper →](https://drive.google.com/file/d/1YKOquZfB0PWgLXoil0_miafx5ck5v2lf/view?usp=sharing)**
 
 ![Grad-CAM comparison across architectures](assets/gradcam_maps/gradcam_batch1_dataset1.png)
-
-*GradCAM activation maps for ResNet18, ResNet34, DenseNet161, and InceptionV3 on Pneumonia, COVID-19, and Healthy chest X-ray samples. Notice how ResNet34 (column 2) consistently localises within anatomically relevant lung regions whereas InceptionV3 (column 4) attends to less coherent areas. The map serves as a visual preview of the headline finding that the most clinically aligned model is not the same as the most accurate one.*    
+*GradCAM activation maps for ResNet18, ResNet34, DenseNet161, and InceptionV3 on Pneumonia, COVID-19, and Healthy chest X-ray samples. Notice how ResNet34 (column 2) consistently localises within anatomically relevant lung regions whereas DenseNet161 (column 3) attends to less coherent areas. The map serves as a visual preview of the headline finding that the most clinically aligned model is not the same as the most accurate one.*    
 
 ---
 
@@ -103,7 +102,7 @@ This project makes that check quantitative. By comparing each model's lung-zone 
 
 ### Lung-zone detection distribution vs. clinical ground truth
 
-![Lung-zone distribution Dataset 1](assets/histograms/Histogram Dataset #1.png)
+![Lung-zone distribution Dataset 1](assets/histograms/histogram_dataset1.png)
 *Comparison of model anomaly detection distributions across lung zones (Upper / Middle / Lower / Peripheral) against PHCC ground-truth (Ibrahim et al., 2021). Closer alignment to the black bars indicates more clinically-aligned reasoning. ResNet34 (green) tracks the ground truth most closely, whilst InceptionV3 (purple) deviates dramatically in the upper zone.*
 
 ### Saliency maps
@@ -116,7 +115,7 @@ This project makes that check quantitative. By comparing each model's lung-zone 
 ![YOLO inference samples](assets/yolo_interpretability/results_dataset#2_1.png)
 *YOLOv8n-seg segmentation outputs on Dataset 2 samples. The model achieves 0.993 box mAP@50 on COVID-19 detection but exhibits inconsistent mask quality (Mask mAP@50 = 0.956), highlighting the limits of using segmentation masks alone for interpretability.*
 
-![Centroid analysis](assets/yolo_interpretability/Dataset#2 Segmentation Important Features Combined Plot.png) -->
+![Centroid analysis](assets/yolo_interpretability/dataset2_segmentation_important_features_combined_plot.png)
 *Novel centroid-based interpretability: averaged segmentation-mask centroids for COVID-19 instances cluster in the lower lung and peripheral regions, aligning with the PHCC ground-truth distribution of COVID-19 abnormalities.*
 
 ---
