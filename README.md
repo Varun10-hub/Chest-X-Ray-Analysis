@@ -114,7 +114,7 @@ This project makes that check quantitative. By comparing each model's lung-zone 
 
 ![YOLO inference samples](assets/yolo_interpretability/results_dataset2_1.jpg)
 
-*YOLOv8n-seg segmentation outputs on Dataset 2 samples. The model achieves 0.993 box mAP@50 on COVID-19 detection but exhibits inconsistent mask quality (Mask mAP@50 = 0.956), highlighting the limits of using segmentation masks alone for interpretability.*
+*YOLOv8n-seg segmentation output on Dataset 2 sample. The model achieves 0.993 box mAP@50 on COVID-19 detection but exhibits inconsistent mask quality (Mask mAP@50 = 0.956), highlighting the limits of using segmentation masks alone for interpretability.*
 
 ![Centroid analysis](assets/yolo_interpretability/dataset2_segmentation_important_features_combined_plot.png)
 *Novel centroid-based interpretability: averaged segmentation-mask centroids for COVID-19 instances cluster in the lower lung and peripheral regions, aligning with the PHCC ground-truth distribution of COVID-19 abnormalities.*
