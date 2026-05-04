@@ -10,7 +10,7 @@
 
 📄 **[Read the full 50-page research paper →](https://drive.google.com/file/d/1YKOquZfB0PWgLXoil0_miafx5ck5v2lf/view?usp=sharing)**
 
-![Grad-CAM comparison across architectures](assets/gradcam_maps/GradCAM plot #1 Dataset #1.png)
+![Grad-CAM comparison across architectures](assets/gradcam_maps/gradcam_batch1_dataset1.png)
 
 *GradCAM activation maps for ResNet18, ResNet34, DenseNet161, and InceptionV3 on Pneumonia, COVID-19, and Healthy chest X-ray samples. Notice how ResNet34 (column 2) consistently localises within anatomically relevant lung regions whereas InceptionV3 (column 4) attends to less coherent areas. The map serves as a visual preview of the headline finding that the most clinically aligned model is not the same as the most accurate one.*    
 
@@ -108,7 +108,7 @@ This project makes that check quantitative. By comparing each model's lung-zone 
 
 ### Saliency maps
 
-![Saliency Dataset 1](assets/saliency_maps/Saliency plot #1 Dataset #1.png)
+![Saliency Dataset 1](assets/saliency_maps/saliency_batch1_dataset1.png)
 *Pixel-level saliency reveals which input features most influenced each model's prediction. ResNet34's saliency map shows clearer feature localization than DenseNet161, despite the latter's higher raw accuracy.*
 
 ### YOLOv8n-seg inference and centroid-based interpretability
@@ -142,8 +142,8 @@ chest-xray-analysis/
 ## Setup
 
 ```bash
-git clone https://github.com/Varun10-hub/<repo-name>.git
-cd <repo-name>
+git clone https://github.com/Varun10-hub/Chest-X-Ray-Analysis.git
+cd Chest-X-Ray-Analysis
 pip install -r requirements.txt
 ```
 
