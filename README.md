@@ -112,7 +112,7 @@ This project makes that check quantitative. By comparing each model's lung-zone 
 
 ### YOLOv8n-seg inference and centroid-based interpretability
 
-![YOLO inference samples](assets/yolo_interpretability/results_dataset#2_1.png)
+![YOLO inference samples](assets/yolo_interpretability/results_dataset2_1.png)
 *YOLOv8n-seg segmentation outputs on Dataset 2 samples. The model achieves 0.993 box mAP@50 on COVID-19 detection but exhibits inconsistent mask quality (Mask mAP@50 = 0.956), highlighting the limits of using segmentation masks alone for interpretability.*
 
 ![Centroid analysis](assets/yolo_interpretability/dataset2_segmentation_important_features_combined_plot.png)
