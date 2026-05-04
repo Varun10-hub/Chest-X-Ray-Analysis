@@ -6,14 +6,13 @@
 
 > **Best accuracy ≠ best clinical alignment.** This study benchmarks four CNN architectures and a YOLOv8n-seg segmentation model on **5,266+ chest X-ray images** for COVID-19, Pneumonia, and Healthy classification, then uses **Grad-CAM and Saliency interpretability** to identify which model's *reasoning* most resembles a doctor's, not just which has the best metrics.
 >
-> **The headline finding**: on the full chest X-ray dataset, **DenseNet161 wins on raw performance (90.18% accuracy)** but **ResNet34 wins on clinical alignment** — its attention regions deviate from physician ground-truth lung zones by just **11.57%**, versus up to **49.32%** for the worst-aligned model. The choice between them depends on whether the deployment context prioritizes accuracy or interpretability.
+> **The headline finding**: on the full chest X-ray dataset, **DenseNet161 wins on raw performance (90.18% accuracy)** but **ResNet34 wins on clinical alignment** as its attention regions deviate from physician ground-truth lung zones by just **11.57%**, versus up to **49.32%** for the worst aligned model. The choice between them depends on whether the deployment context prioritizes accuracy or interpretability.
 
 📄 **[Read the full 50-page research paper →](https://drive.google.com/file/d/1YKOquZfB0PWgLXoil0_miafx5ck5v2lf/view?usp=sharing)**
 
-<!-- HERO IMAGE: replace this with a striking Grad-CAM comparison from your assets/ folder.
-     Aim for one that shows ResNet34 highlighting clinically-relevant regions while
-     InceptionV3 (the worst-aligned) attends elsewhere. -->
-<!-- ![Grad-CAM comparison across architectures](assets/REPLACE_WITH_HERO_IMAGE.png) -->
+![Grad-CAM comparison across architectures](assets/gradcam_maps/GradCAM plot #1 Dataset #1.png)
+
+*GradCAM activation maps for ResNet18, ResNet34, DenseNet161, and InceptionV3 on Pneumonia, COVID-19, and Healthy chest X-ray samples. Notice how ResNet34 (column 2) consistently localises within anatomically relevant lung regions whereas InceptionV3 (column 4) attends to less coherent areas. The map serves as a visual preview of the headline finding that the most clinically aligned model is not the same as the most accurate one.*    
 
 ---
 
@@ -39,7 +38,7 @@
 | DenseNet161 | 84.66% | 84.75% | 18.69% |
 | **InceptionV3** | **85.94%** | **85.93%** | **17.79%** 🥇 |
 
-*InceptionV3 wins on both metrics — best raw performance **and** best clinical alignment on segmented lungs.*
+*InceptionV3 wins on both metrics showing best raw performance **and** best clinical alignment on segmented lungs.*
 
 ### YOLOv8n-seg (supplementary instance segmentation, Dataset 2)
 
@@ -56,8 +55,8 @@
 
 The COVID-19 pandemic accelerated demand for AI-assisted radiology, but high accuracy alone isn't enough for clinical adoption because physicians need to trust *how* a model arrives at its prediction. This project takes a comparative, interpretability-first approach:
 
-1. **Train and benchmark four CNN architectures** (ResNet18, ResNet34, DenseNet161, InceptionV3) on two chest X-ray datasets — one of full thoracic images, one of segmented lung regions only.
-2. **Apply two interpretability techniques** — Grad-CAM and Saliency maps via Captum to visualize where each model "looks" when making predictions.
+1. **Train and benchmark four CNN architectures** (ResNet18, ResNet34, DenseNet161, InceptionV3) on two chest X-ray datasets - one of full thoracic images, one of segmented lung regions only.
+2. **Apply two interpretability techniques** - Grad-CAM and Saliency maps via Captum to visualize where each model "looks" when making predictions.
 3. **Quantify clinical alignment** by comparing each model's attention distribution across lung zones (upper, middle, lower, peripheral) against ground-truth distributions published by the Primary Health Care Corporation (PHCC) of Qatar (Ibrahim et al., 2021).
 4. **Supplementary**: Train a YOLOv8n-seg instance segmentation model and develop a **novel centroid-based interpretability technique** that averages segmentation-mask centroids of COVID-19 instances to identify the lung regions the model treats as diagnostically critical.
 
@@ -72,19 +71,19 @@ This project makes that check quantitative. By comparing each model's lung-zone 
 ### Models
 
 **Classification (PyTorch)**
-- **ResNet18 / ResNet34** — residual networks with skip connections
-- **DenseNet161** — densely connected convolutional network with feature reuse
-- **InceptionV3** — inception modules with multi-scale filters (1×1, 3×3, 5×5)
+- **ResNet18 / ResNet34** - residual networks with skip connections
+- **DenseNet161** - densely connected convolutional network with feature reuse
+- **InceptionV3** - inception modules with multi-scale filters (1×1, 3×3, 5×5)
 
 **Segmentation (Ultralytics)**
-- **YOLOv8n-seg** — instance segmentation with bounding boxes + segmentation masks, trained on **self-generated binary lung masks** with 20 key points per mask
+- **YOLOv8n-seg** - instance segmentation with bounding boxes + segmentation masks, trained on **self-generated binary lung masks** with 20 key points per mask
 
 ### Interpretability techniques
 
-- **Grad-CAM** (Selvaraju et al., 2017) — gradient-weighted class activation mapping
-- **Saliency Maps** (Simonyan et al., 2014) — input-gradient visualization
-- **Lung-zone histograms** — manually classify each model's high-attention regions into Upper / Middle / Lower / Peripheral zones, then compute mean absolute deviation from PHCC ground-truth distributions
-- **Centroid-based analysis** *(novel)* — for YOLO segmentation outputs, compute centroids of COVID-19 segmentation masks and average to identify diagnostically critical lung regions
+- **Grad-CAM** (Selvaraju et al., 2017) - gradient-weighted class activation mapping
+- **Saliency Maps** (Simonyan et al., 2014) - input-gradient visualization
+- **Lung-zone histograms** - manually classify each model's high-attention regions into Upper / Middle / Lower / Peripheral zones, then compute mean absolute deviation from PHCC ground-truth distributions
+- **Centroid-based analysis** *(novel)* - for YOLO segmentation outputs, compute centroids of COVID-19 segmentation masks and average to identify diagnostically critical lung regions
 
 ### Training setup
 
@@ -104,25 +103,20 @@ This project makes that check quantitative. By comparing each model's lung-zone 
 
 ### Lung-zone detection distribution vs. clinical ground truth
 
-<!-- ![Lung-zone distribution Dataset 1](assets/REPLACE_lung_zone_distribution_dataset1.png) -->
+![Lung-zone distribution Dataset 1](assets/histograms/Histogram Dataset #1.png)
 *Comparison of model anomaly detection distributions across lung zones (Upper / Middle / Lower / Peripheral) against PHCC ground-truth (Ibrahim et al., 2021). Closer alignment to the black bars indicates more clinically-aligned reasoning. ResNet34 (green) tracks the ground truth most closely, whilst InceptionV3 (purple) deviates dramatically in the upper zone.*
-
-### Grad-CAM heatmaps across architectures
-
-<!-- ![Grad-CAM Dataset 1](assets/REPLACE_gradcam_dataset1.png) -->
-*Grad-CAM activation maps for representative Pneumonia, COVID-19, and Healthy samples across all four models. ResNet34 and DenseNet161 focus on similar lung regions, and InceptionV3's attention is noticeably less anatomically grounded.*
 
 ### Saliency maps
 
-<!-- ![Saliency Dataset 1](assets/REPLACE_saliency_dataset1.png) -->
+![Saliency Dataset 1](assets/saliency_maps/Saliency plot #1 Dataset #1.png)
 *Pixel-level saliency reveals which input features most influenced each model's prediction. ResNet34's saliency map shows clearer feature localization than DenseNet161, despite the latter's higher raw accuracy.*
 
 ### YOLOv8n-seg inference and centroid-based interpretability
 
-<!-- ![YOLO inference samples](assets/REPLACE_yolo_inference.png) -->
+![YOLO inference samples](assets/yolo_interpretability/results_dataset#2_1.png)
 *YOLOv8n-seg segmentation outputs on Dataset 2 samples. The model achieves 0.993 box mAP@50 on COVID-19 detection but exhibits inconsistent mask quality (Mask mAP@50 = 0.956), highlighting the limits of using segmentation masks alone for interpretability.*
 
-<!-- ![Centroid analysis](assets/REPLACE_centroid_analysis.png) -->
+![Centroid analysis](assets/yolo_interpretability/Dataset#2 Segmentation Important Features Combined Plot.png) -->
 *Novel centroid-based interpretability: averaged segmentation-mask centroids for COVID-19 instances cluster in the lower lung and peripheral regions, aligning with the PHCC ground-truth distribution of COVID-19 abnormalities.*
 
 ---
